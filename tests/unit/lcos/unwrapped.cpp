@@ -13,11 +13,10 @@
 #include <hpx/util/unwrapped.hpp>
 #include <hpx/util/lightweight_test.hpp>
 
-#include <boost/atomic.hpp>
-
 #if defined(HPX_HAVE_CXX11_STD_ARRAY)
 #include <array>
 #endif
+#include <atomic>
 #include <cstddef>
 #include <numeric>
 #include <string>
@@ -45,7 +44,7 @@ using hpx::naming::id_type;
 
 
 ///////////////////////////////////////////////////////////////////////////////
-boost::atomic<std::size_t> void_counter;
+std::atomic<std::size_t> void_counter;
 
 void null_thread()
 {
@@ -55,7 +54,7 @@ void null_thread()
 HPX_PLAIN_ACTION(null_thread, null_action);
 
 ///////////////////////////////////////////////////////////////////////////////
-boost::atomic<std::size_t> result_counter;
+std::atomic<std::size_t> result_counter;
 
 bool null_result_thread()
 {
@@ -87,7 +86,7 @@ int hpx_main(
     )
 {
     {
-        boost::atomic<std::size_t> count(0);
+        std::atomic<std::size_t> count(0);
 
         ///////////////////////////////////////////////////////////////////////
         id_type const here_ = find_here();
